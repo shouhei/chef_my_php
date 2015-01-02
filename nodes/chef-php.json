@@ -1,0 +1,12 @@
+{
+  "run_list": [
+      "recipe[common]",
+      "recipe[develop]",
+      "recipe[nginx]",
+      "recipe[mysql]",
+      "recipe[php]"
+  ],
+  "automatic": {
+    "ipaddress": "chef-php"
+  }
+}

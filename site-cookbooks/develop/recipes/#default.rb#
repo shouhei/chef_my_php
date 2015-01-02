@@ -1,0 +1,38 @@
+#
+# Cookbook Name:: develop
+# Recipe:: default
+#
+# Copyright 2015, YOUR_COMPANY_NAME
+#
+# All rights reserved - Do Not Redistribute
+#
+bash 'add_epel' do
+  user 'root'
+    code <<-EOC
+    rpm -ivh http://ftp-srv2.kddilabs.jp/Linux/distributions/fedora/epel/6/x86_64/epel-release-6-8
+    sed -i -e "s/enabled *= *1/enabled=0/g" /etc/yum.repos.d/epel.repo
+  EOC
+    creates "/etc/yum.repos.d/epel.repo"
+end
+
+
+%w{zsh tmux vim-enhanced}.each do |pkg|
+  package pkg do
+    action :install
+  end
+end
+
+git "/root/.oh-my-zsh" do
+  repository "git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh"
+  reference "master"
+  action :checkout
+  user "root"
+  group "root"
+end
+
+template ".zshrc" do
+  path "/root/.zhsrc"
+  owner "root"
+  group "root"
+  mode 0700
+end

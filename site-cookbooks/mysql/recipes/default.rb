@@ -6,6 +6,12 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+%w{mysql mysql-libs}.each do |pkg|
+  package pkg do
+    action :remove
+  end
+end
+
 remote_file "/tmp/#{node['mysql']['file_name']}" do
   source "#{node['mysql']['remote_uri']}"
 end
@@ -24,4 +30,8 @@ node['mysql']['rpms'].each do |rpm|
     provider Chef::Provider::Package::Rpm
     source "/tmp/#{rpm[:rpm_file]}"
   end
+end
+
+service "mysql" do
+    action [:enable, :start]
 end

@@ -38,3 +38,7 @@ end
     options "--enablerepo=remi-php56"
   end
 end
+
+service "php-fpm" do
+    action [:enable, :start]
+end

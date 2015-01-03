@@ -14,5 +14,10 @@ default['mysql']['rpms'] = [
   {
     :rpm_file     => "MySQL-shared-#{default['mysql']['subject']}.rpm",
     :package_name => "mysql-shared"
+  },
+  {
+    :rpm_file     => "MySQL-server-#{default['mysql']['subject']}.rpm",
+    :package_name => "mysql-server"
   }
+
 ]

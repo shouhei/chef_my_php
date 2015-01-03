@@ -25,9 +25,8 @@ bash "install_mysql" do
 end
 
 node['mysql']['rpms'].each do |rpm|
-  package rpm[:package_name] do
+  rpm_package rpm[:package_name] do
     action :install
-    provider Chef::Provider::Package::Rpm
     source "/tmp/#{rpm[:rpm_file]}"
   end
 end

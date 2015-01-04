@@ -4,7 +4,8 @@
       "recipe[develop]",
       "recipe[nginx]",
       "recipe[mysql]",
-      "recipe[php]"
+      "recipe[php]",
+      "recipe[jenkins]"
   ],
   "automatic": {
     "ipaddress": "chef-php"

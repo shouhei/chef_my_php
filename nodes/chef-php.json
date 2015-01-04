@@ -2,6 +2,7 @@
   "run_list": [
       "recipe[common]",
       "recipe[develop]",
+      "recipe[iptables]",
       "recipe[nginx]",
       "recipe[mysql]",
       "recipe[php]",

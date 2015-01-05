@@ -42,3 +42,17 @@ end
 service "php-fpm" do
     action [:enable, :start]
 end
+
+bash "add_composer" do
+  user "root"
+  cwd "/usr/local/bin"
+  code <<-EOH
+    curl -sS #{node['php']['composer']['url']} | php
+  EOH
+end
+
+link "/usr/local/bin/composer" do
+  to "/usr/local/bin/composer.phar"
+  not_if "test -L /usr/local/bin/composer"
+  link_type :symbolic
+end
